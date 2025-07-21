@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eleos Counseling Center - Compassionate Care for the Whole Person</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-beige: #f5f1eb;
+            --sage-green: #a8b5a0;
+            --muted-blue: #9db4c0;
+            --warm-white: #fefcfa;
+            --soft-gray: #6b7280;
+            --text-dark: #374151;
+            --accent-green: #8fa585;
+            --light-sage: #c4d1be;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--warm-white);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 241, 235, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-beige) 0%, var(--light-sage) 100%);
+            display: flex;
+            align-items: center;
+            padding: 6rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://pixabay.com/get/gcd2f196f1d107a8c7677b7928d179dc17bf66dab4a3b219522dd9b12680a05703c93a1ccc9363a0f7b1fb64c88f8c432caf29fc0428c1e7f2df1b1f09ab23c71_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.2rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--soft-gray);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--sage-green);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(168, 181, 160, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--accent-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 181, 160, 0.4);
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--soft-gray);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--primary-beige);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .therapist-photo {
+            text-align: center;
+        }
+
+        .therapist-photo img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 5px solid white;
+        }
+
+        .therapist-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .credentials {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .therapist-info p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Services Section */
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--warm-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(168, 181, 160, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--muted-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--soft-gray);
+            line-height: 1.6;
+        }
+
+        .availability-note {
+            background: var(--light-sage);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .availability-note h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .availability-note p {
+            color: var(--soft-gray);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary-beige);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            color: var(--soft-gray);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(168, 181, 160, 0.2);
+            border-radius: 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sage-green);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--sage-green);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-beige);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Eleos Counseling</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text fade-in">
+                <h1>Welcome to Eleos Counseling Center</h1>
+                <p class="tagline">Compassionate Care for the Whole Person</p>
+                <p>We provide a safe, supportive environment where healing begins. Our evidence-based therapeutic approaches are tailored to meet your unique needs, helping you navigate life's challenges with resilience and hope.</p>
+                <a href="#contact" class="cta-button">Begin Your Journey</a>
+            </div>
+            <div class="hero-image fade-in">
+                <img src="https://pixabay.com/get/g4a74b342e1977c3f01ef4ee75aa5662c76960a769392220aa283daa6dfe846d41997556d480651b0da96243255eea3597314af504ef546f342c1060df7d2ba82_1280.jpg" alt="Peaceful counseling environment" />
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="section-title fade-in">About Dr. Sarah Mitchell</h2>
+            <div class="about-content">
+                <div class="therapist-photo fade-in">
+                    <img src="https://pixabay.com/get/ge88920e667c7eb860ba7cc4087d9cc4fb819a0e1d65b6502db521e75a18a12c3b2f2588ae343f90d080e2a3ec32962fbcf216c6fdd38d7c44d36ee6d99fce08d_1280.jpg" alt="Dr. Sarah Mitchell, Licensed Clinical Psychologist" />
+                </div>
+                <div class="therapist-info fade-in">
+                    <h3>Dr. Sarah Mitchell</h3>
+                    <p class="credentials">Licensed Clinical Psychologist, Ph.D. • California License #PSY12345</p>
+                    <p>With over 15 years of experience in mental health counseling, I am dedicated to providing compassionate, evidence-based care to individuals and couples. My therapeutic approach integrates cognitive-behavioral therapy, mindfulness-based interventions, and humanistic principles.</p>
+                    <p>I believe in the inherent strength and resilience of every person. My role is to provide a safe, non-judgmental space where you can explore your thoughts and feelings, develop coping strategies, and work toward meaningful change.</p>
+                    <p><strong>Specializations:</strong> Anxiety and depression, trauma recovery, relationship counseling, life transitions, and stress management.</p>
+                    <p><strong>Education:</strong> Ph.D. in Clinical Psychology from UCLA, specialized training in EMDR and Mindfulness-Based Cognitive Therapy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Counseling Services</h2>
+            <p class="section-subtitle fade-in">We offer comprehensive mental health services tailored to your individual needs, providing both online and in-person sessions throughout California.</p>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Individual Therapy</h3>
+                    <p>One-on-one sessions focused on your personal growth, healing, and mental wellness. We address anxiety, depression, trauma, life transitions, and personal development goals.</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Couples Counseling</h3>
+                    <p>Strengthen your relationship through improved communication, conflict resolution, and deeper emotional connection. We help couples navigate challenges and build stronger bonds.</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Cognitive Behavioral Therapy</h3>
+                    <p>Evidence-based approach focusing on identifying and changing negative thought patterns and behaviors that contribute to emotional distress and mental health challenges.</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Mindfulness & Stress Management</h3>
+                    <p>Learn practical mindfulness techniques and stress reduction strategies to improve your overall well-being and develop resilience in facing life's challenges.</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Trauma Recovery</h3>
+                    <p>Specialized treatment for trauma and PTSD using evidence-based approaches including EMDR and trauma-focused cognitive behavioral therapy.</p>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Group Therapy</h3>
+                    <p>Connect with others facing similar challenges in a supportive group environment. Topics include anxiety management, grief support, and social skills development.</p>
+                </div>
+            </div>
+
+            <div class="availability-note fade-in">
+                <h4><i class="fas fa-map-marker-alt"></i> Service Availability</h4>
+                <p>All services are available both online via secure video sessions and in-person at our comfortable office in California. We are licensed to provide services throughout the state of California.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title fade-in">Get Started Today</h2>
+            <p class="section-subtitle fade-in">Take the first step toward healing and growth. Reach out to schedule a consultation or ask any questions you may have.</p>
+            
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Ready to Begin?</h3>
+                    <p>I understand that reaching out for help can feel overwhelming. Please know that this is a brave step, and I'm here to support you every step of the way.</p>
+                    <p><strong>What to Expect:</strong></p>
+                    <ul style="margin-left: 1.5rem; color: var(--soft-gray);">
+                        <li>Initial consultation to understand your needs</li>
+                        <li>Collaborative treatment planning</li>
+                        <li>Flexible scheduling options</li>
+                        <li>Confidential and professional care</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem;"><strong>Insurance:</strong> We accept most major insurance plans and offer sliding scale fees for those who qualify.</p>
+                    <p><strong>Emergency:</strong> If you are experiencing a mental health emergency, please call 911 or go to your nearest emergency room.</p>
+                </div>
+
+                <form class="contact-form fade-in" id="contactForm">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">Send us a message</h3>
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number (optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">How can we help you? *</label>
+                        <textarea id="message" name="message" placeholder="Please share what brings you here today and any questions you may have. This information helps us better understand how we can support you." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    <p style="font-size: 0.9rem; color: var(--soft-gray); margin-top: 1rem; text-align: center;">
+                        Your privacy is important to us. All communications are confidential.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Eleos Counseling Center. All rights reserved.</p>
+            <p>Licensed in California • Confidential Services • Professional Care</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                
+                if (target) {
+                    const targetPosition = target.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const submissionData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message'),
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+            
+            // Log to console as requested
+            console.log('=== ELEOS COUNSELING CENTER - NEW INQUIRY ===');
+            console.log('Submission Time:', submissionData.timestamp);
+            console.log('Name:', submissionData.name);
+            console.log('Email:', submissionData.email);
+            console.log('Phone:', submissionData.phone || 'Not provided');
+            console.log('Message:', submissionData.message);
+            console.log('User Agent:', submissionData.userAgent);
+            console.log('=== END INQUIRY ===');
+            
+            // Show success message
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Message Sent Successfully!';
+            submitBtn.style.background = 'var(--accent-green)';
+            
+            // Reset form
+            this.reset();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = 'var(--sage-green)';
+            }, 3000);
+            
+            // Show additional feedback
+            alert('Thank you for reaching out! Your message has been received. We will respond within 24 hours. If this is an urgent matter, please call our office directly.');
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(245, 241, 235, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(245, 241, 235, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Initialize fade-in animations for elements already in view
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
