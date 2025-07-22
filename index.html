@@ -319,6 +319,73 @@
             color: var(--soft-gray);
         }
 
+        /* FAQ Section */
+        .faq {
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--warm-white);
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            background: var(--light-sage);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--sage-green);
+            color: white;
+        }
+
+        .faq-question i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: var(--warm-white);
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--soft-gray);
+            line-height: 1.7;
+            margin: 0;
+        }
+
         /* Contact Section */
         .contact {
             background: var(--primary-beige);
@@ -497,6 +564,7 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#faq" class="nav-link">자주 묻는 질문</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <button class="mobile-menu-toggle">
@@ -616,6 +684,86 @@
             <div class="availability-note fade-in">
                 <h4><i class="fas fa-map-marker-alt"></i> Service Availability</h4>
                 <p>All services are available both online via secure video sessions and in-person at our comfortable office in California. We are licensed to provide services throughout the state of California.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq section">
+        <div class="container">
+            <h2 class="section-title fade-in">자주 묻는 질문</h2>
+            <p class="section-subtitle fade-in">상담에 대해 궁금한 점들을 정리해 드렸습니다. 추가 질문이 있으시면 언제든 연락해 주세요.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>상담 비용은 얼마인가요?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>상담 비용은 상담 형태에 따라 다릅니다. 개인 상담은 회당 $150-200, 부부 상담은 회당 $200-250입니다. 대부분의 주요 보험이 적용되며, 경제적 어려움이 있는 분들을 위한 슬라이딩 스케일 요금제도 제공하고 있습니다. 첫 상담 시 자세한 비용에 대해 상의해 드립니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>온라인 상담도 가능한가요?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>네, 안전한 화상 시스템을 통해 온라인 상담을 제공하고 있습니다. 전 세계 어디서든 상담받으실 수 있으며, 대면 상담과 동일한 품질의 서비스를 받으실 수 있습니다. 특히 바쁜 일정이나 거리상의 문제로 직접 방문이 어려운 분들께 좋은 옵션입니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>첫 상담에서는 무엇을 하나요?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>첫 상담은 서로를 알아가는 시간입니다. 현재 겪고 계신 어려움, 상담을 통해 이루고 싶은 목표, 개인적 배경 등에 대해 편안하게 대화합니다. 또한 상담 과정과 방법에 대해 설명드리고, 궁금한 점들을 자유롭게 질문하실 수 있습니다. 보통 50분 정도 소요됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>상담 내용이 비밀이 보장되나요?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>네, 상담 내용은 엄격히 비밀이 보장됩니다. 캘리포니아 주법과 심리학자 윤리 규정에 따라 내담자의 동의 없이는 어떤 정보도 외부에 공개되지 않습니다. 단, 자해나 타해 위험이 있거나 아동 학대가 의심되는 경우 등 법적으로 신고 의무가 있는 경우는 예외입니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>상담은 얼마나 자주, 얼마나 오래 받아야 하나요?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>상담 빈도와 기간은 개인의 상황과 목표에 따라 다릅니다. 일반적으로 주 1회로 시작하며, 필요에 따라 조정할 수 있습니다. 단기 상담(6-12회)부터 장기 상담까지 다양하며, 진행 상황을 정기적으로 점검하여 함께 결정해 나갑니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>기독교 상담이 일반 상담과 어떻게 다른가요?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>기독교 상담은 과학적으로 검증된 심리치료 방법에 기독교적 관점을 통합한 접근법입니다. 신앙이 있는 분들의 경우 영적 차원을 포함한 전인적 치유를 추구하며, 신앙이 없는 분들께는 일반적인 심리치료를 제공합니다. 각자의 신념과 가치관을 존중하며 상담을 진행합니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>예약은 어떻게 하나요?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>아래 연락처 양식을 통해 메시지를 보내주시거나 직접 전화주시면 됩니다. 24시간 내에 연락드려 상담 일정을 조율해드립니다. 응급상황의 경우 911에 연락하시거나 가까운 응급실을 방문해 주세요.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -789,6 +937,24 @@
                 navbar.style.boxShadow = 'none';
             }
         });
+
+        // FAQ toggle functionality
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            // Toggle active class
+            element.classList.toggle('active');
+            answer.classList.toggle('active');
+            
+            // Close other FAQ items
+            document.querySelectorAll('.faq-question').forEach(question => {
+                if (question !== element) {
+                    question.classList.remove('active');
+                    question.nextElementSibling.classList.remove('active');
+                }
+            });
+        }
 
         // Initialize fade-in animations for elements already in view
         window.addEventListener('load', () => {
