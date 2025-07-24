@@ -6,6 +6,7 @@
     <title>Eleos Counseling Center - Compassionate Care for the Whole Person</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         :root {
             --primary-beige: #f5f1eb;
@@ -861,6 +862,9 @@
             observer.observe(el);
         });
 
+        // Initialize EmailJS
+        emailjs.init("YOUR_PUBLIC_KEY"); // EmailJS에서 발급받은 Public Key로 교체해야 합니다
+
         // Contact form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -870,39 +874,55 @@
             const submissionData = {
                 name: formData.get('name'),
                 email: formData.get('email'),
-                phone: formData.get('phone'),
+                phone: formData.get('phone') || 'Not provided',
                 message: formData.get('message'),
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent
+                timestamp: new Date().toISOString()
             };
 
-            // Log to console as requested
-            console.log('=== ELEOS COUNSELING CENTER - NEW INQUIRY ===');
-            console.log('Submission Time:', submissionData.timestamp);
-            console.log('Name:', submissionData.name);
-            console.log('Email:', submissionData.email);
-            console.log('Phone:', submissionData.phone || 'Not provided');
-            console.log('Message:', submissionData.message);
-            console.log('User Agent:', submissionData.userAgent);
-            console.log('=== END INQUIRY ===');
-
-            // Show success message
+            // Show loading state
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Message Sent Successfully!';
-            submitBtn.style.background = 'var(--accent-green)';
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
 
-            // Reset form
-            this.reset();
-
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = 'var(--sage-green)';
-            }, 3000);
-
-            // Show additional feedback
-            alert('Thank you for reaching out! Your message has been received. We will respond within 24 hours. If this is an urgent matter, please call our office directly.');
+            // Send email using EmailJS
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                to_email: 'eleosccla@gmail.com',
+                from_name: submissionData.name,
+                from_email: submissionData.email,
+                phone: submissionData.phone,
+                message: submissionData.message,
+                timestamp: submissionData.timestamp
+            }).then(function(response) {
+                console.log('Email sent successfully:', response);
+                
+                // Show success message
+                submitBtn.textContent = '메시지가 전송되었습니다!';
+                submitBtn.style.background = 'var(--accent-green)';
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                
+                // Show success alert
+                alert('상담 신청이 접수되었습니다! 24시간 내에 eleosccla@gmail.com에서 연락드리겠습니다.');
+                
+            }, function(error) {
+                console.error('Email sending failed:', error);
+                
+                // Show error message
+                submitBtn.textContent = '전송 실패 - 다시 시도해주세요';
+                submitBtn.style.background = '#dc3545';
+                
+                alert('메시지 전송에 실패했습니다. 잠시 후 다시 시도하거나 직접 eleosccla@gmail.com으로 연락해 주세요.');
+                
+            }).finally(function() {
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = 'var(--sage-green)';
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
         });
 
         // Navbar background change on scroll
